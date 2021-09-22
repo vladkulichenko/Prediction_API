@@ -19,7 +19,8 @@ def get_from_bd(bd_url, db_name, db_table):
     df.drop('_id', axis=1, inplace=True)
     return df
 
-def post_to_db(df, bd_url, db_name,db_table ):
+def post_to_db(csv_url, bd_url, db_name,db_table ):
+    df = pd.read_csv(csv_url)
     client = MongoClient(bd_url)
     db = client[db_name]
     col = db[db_table]
